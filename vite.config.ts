@@ -1,6 +1,5 @@
-import { resolve } from 'node:path'
-
 import react from '@vitejs/plugin-react'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import EsLint from 'vite-plugin-linter'
@@ -11,7 +10,8 @@ import * as packageJson from './package.json'
 export default defineConfig((configEnv) => ({
   plugins: [
     dts({
-      include: ['src/component/'],
+      // include: ['src/component/'],
+      insertTypesEntry: true,
     }),
     react(),
     tsConfigPaths(),
@@ -23,7 +23,7 @@ export default defineConfig((configEnv) => ({
   build: {
     lib: {
       entry: resolve('src', 'component/index.ts'),
-      name: 'ReactViteLibrary',
+      name: 'MantineTagInput',
       formats: ['es', 'umd'],
       fileName: (format) => `mantine-tag-input.${format}.js`,
     },
