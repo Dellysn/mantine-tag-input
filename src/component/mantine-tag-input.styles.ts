@@ -1,22 +1,12 @@
 import { createStyles, rem } from '@mantine/core'
 
-type StyleInput = {
-  minRows?: number
-  maxRows?: number
-}
-
-const useTagStyles = createStyles((theme, styleParams: StyleInput) => {
-  const maxRow = styleParams?.maxRows
-  const minRow = styleParams?.minRows
-
+export const useTagStyles = createStyles((theme) => {
   return {
-    tags_wrapper: {
+    tagsWrapper: {
       display: 'flex',
       flexWrap: 'wrap',
       width: '100%',
       minWidth: '100%',
-      minHeight: rem(minRow ?? 30),
-      maxHeight: rem(maxRow ?? 100),
       border: `${rem(1)} solid ${
         theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4]
       }`,
@@ -43,14 +33,7 @@ const useTagStyles = createStyles((theme, styleParams: StyleInput) => {
       },
     },
 
-    tag_input_group: {
-      display: 'flex',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      justifyContent: 'flex-start',
-    },
-    tag_remove_button: {
-      // marginLeft: rem(4),
+    tagRemoveButton: {
       color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
       backgroundColor: 'transparent',
       border: 'none',
@@ -60,5 +43,3 @@ const useTagStyles = createStyles((theme, styleParams: StyleInput) => {
     },
   }
 })
-
-export default useTagStyles

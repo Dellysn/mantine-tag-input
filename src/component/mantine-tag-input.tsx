@@ -2,7 +2,7 @@ import { Badge, CloseButton, Group, Input, Text } from '@mantine/core'
 import React, { useState } from 'react'
 
 import { useTagStyles } from '.'
-export interface TagsInputProps{
+export interface TagsInputProps {
   name?: string
   placeHolder?: string
   value?: string[]
@@ -16,16 +16,11 @@ export interface TagsInputProps{
   isEditOnRemove?: boolean
   beforeAddValidate?: (tag: string, existingTags: string[]) => boolean
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  maxRows?: number
-  minRows?: number
 }
 
-const MantineTagInput = (props: TagsInputProps) => {
+export const MantineTagInput = (props: TagsInputProps) => {
   const [tags, setTags] = useState<string[]>(props.value ?? [])
-  const { classes } = useTagStyles({
-    maxRows: props.maxRows,
-    minRows: props.minRows,
-  })
+  const { classes } = useTagStyles()
   const { disabled } = props
 
   function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -72,7 +67,7 @@ const MantineTagInput = (props: TagsInputProps) => {
     props?.onKeyUp?.(e)
   }
   return (
-    <Input.Wrapper className={classes.tags_wrapper}>
+    <Input.Wrapper className={classes.tagsWrapper} color="red">
       <Group spacing={5}>
         {tags.map((tag) => (
           <Badge key={tag}>
@@ -83,7 +78,7 @@ const MantineTagInput = (props: TagsInputProps) => {
                   setTags(tags.filter((t) => t !== tag))
                   props?.onRemoved?.(tag)
                 }}
-                className={classes.tag_remove_button}
+                className={classes.tagRemoveButton}
               />
             </Group>
           </Badge>
@@ -93,5 +88,3 @@ const MantineTagInput = (props: TagsInputProps) => {
     </Input.Wrapper>
   )
 }
-
-export default MantineTagInput
