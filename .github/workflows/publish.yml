@@ -5,9 +5,15 @@ on:
     types: [created]
 
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+         
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -15,7 +21,6 @@ jobs:
           node-version: 16.x
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org/'
-      - run: npm install global pnpm
       - run: pnpm install
       - run: pnpm build
       - run: npm publish --access=public
