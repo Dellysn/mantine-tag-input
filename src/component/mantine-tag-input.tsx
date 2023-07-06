@@ -1,8 +1,8 @@
 import { Badge, CloseButton, Group, Input, Text } from '@mantine/core'
 import React, { useState } from 'react'
+
 import { useTagStyles } from '.'
-import { InputProps } from '@mantine/core'
-export interface TagsInputProps extends Omit<InputProps, 'onChange' | 'value'> {
+export interface TagsInputProps{
   name?: string
   placeHolder?: string
   value?: string[]
