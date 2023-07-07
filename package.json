@@ -29,11 +29,11 @@
   "exports": {
     ".": {
       "import": "./dist/mantine-tag-input.es.js",
-      "require": "./dist/mantine-tag-input.umd.js"
+      "require": "./dist/mantine-tag-input.umd.cjs"
     },
     "./dist/style.css": "./dist/style.css"
   },
-  "main": "./dist/mantine-tag-input.umd.js",
+  "main": "./dist/mantine-tag-input.umd.cjs",
   "module": "./dist/mantine-tag-input.es.js",
   "types": "./dist/index.d.ts",
   "devDependencies": {
