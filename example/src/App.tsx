@@ -27,7 +27,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-      <MantineTagInput />
+      <MantineTagInput placeHolder='enter emails' size='xl'/>
       </p>
     </>
   )

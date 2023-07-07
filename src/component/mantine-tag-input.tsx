@@ -71,7 +71,7 @@ export const MantineTagInput = (props: TagsInputProps) => {
     <Input.Wrapper className={classes.tagsWrapper} color="red">
       <Group spacing={5}>
         {tags.map((tag) => (
-          <Badge key={tag}>
+          <Badge key={tag} size={size}>
             <Group position="apart">
               <Text>{tag}</Text>
               <CloseButton
