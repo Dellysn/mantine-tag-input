@@ -16,12 +16,13 @@ export interface TagsInputProps {
   isEditOnRemove?: boolean
   beforeAddValidate?: (tag: string, existingTags: string[]) => boolean
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 export const MantineTagInput = (props: TagsInputProps) => {
   const [tags, setTags] = useState<string[]>(props.value ?? [])
   const { classes } = useTagStyles()
-  const { disabled } = props
+  const { disabled, size } = props
 
   function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
     e.stopPropagation()
@@ -84,7 +85,12 @@ export const MantineTagInput = (props: TagsInputProps) => {
           </Badge>
         ))}
       </Group>
-      <Input disabled={disabled} onKeyUp={handleKeyUp} placeholder={props?.placeHolder} />
+      <Input
+        disabled={disabled}
+        onKeyUp={handleKeyUp}
+        placeholder={props?.placeHolder}
+        size={size}
+      />
     </Input.Wrapper>
   )
 }

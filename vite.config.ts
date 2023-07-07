@@ -10,7 +10,7 @@ import * as packageJson from './package.json'
 export default defineConfig((configEnv) => ({
   plugins: [
     dts({
-      // include: ['src/component/'],
+      include: ['src/component/'],
       insertTypesEntry: true,
     }),
     react(),
@@ -24,8 +24,8 @@ export default defineConfig((configEnv) => ({
     lib: {
       entry: resolve('src', 'component/index.ts'),
       name: 'MantineTagInput',
-      formats: ['es', 'umd'],
-      fileName: (format) => `mantine-tag-input.${format}.js`,
+      formats: ['es', 'umd', 'cjs'],
+      fileName: `mantine-tag-input`,
     },
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],

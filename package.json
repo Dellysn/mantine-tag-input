@@ -24,17 +24,18 @@
     ]
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "exports": {
     ".": {
-      "import": "./dist/mantine-tag-input.es.js",
+      "import": "./dist/mantine-tag-input.js",
       "require": "./dist/mantine-tag-input.umd.cjs"
     },
     "./dist/style.css": "./dist/style.css"
   },
   "main": "./dist/mantine-tag-input.umd.cjs",
-  "module": "./dist/mantine-tag-input.es.js",
+  "module": "./dist/mantine-tag-input.js",
   "types": "./dist/index.d.ts",
   "devDependencies": {
     "@types/node": "^18.7.6",
