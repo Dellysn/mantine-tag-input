@@ -1,11 +1,12 @@
 import { Badge, CloseButton, Group, Input, Text } from '@mantine/core'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useTagStyles } from '.'
 export interface TagsInputProps {
   name?: string
   placeHolder?: string
   value?: string[]
+  error?: string
   onChange?: (tags: string[]) => void
   onBlur?: any
   separators?: string[]
@@ -19,10 +20,12 @@ export interface TagsInputProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
-export const MantineTagInput = (props: TagsInputProps) => {
+export const TagInput = (props: TagsInputProps) => {
   const [tags, setTags] = useState<string[]>(props.value ?? [])
-  const { classes } = useTagStyles()
-  const { disabled, size } = props
+  const { classes } = useTagStyles({
+    error: props?.error === undefined ? false : true,
+  })
+  const { disabled, size, error } = props
 
   function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
     e.stopPropagation()
@@ -67,30 +70,37 @@ export const MantineTagInput = (props: TagsInputProps) => {
 
     props?.onKeyUp?.(e)
   }
+  useEffect(() => {
+    props?.onBlur?.(tags)
+    props?.onChange?.(tags)
+  }, [tags])
+
   return (
-    <Input.Wrapper className={classes.tagsWrapper} color="red">
-      <Group spacing={5}>
-        {tags.map((tag) => (
-          <Badge key={tag} size={size}>
-            <Group position="apart">
-              <Text>{tag}</Text>
-              <CloseButton
-                onClick={() => {
-                  setTags(tags.filter((t) => t !== tag))
-                  props?.onRemoved?.(tag)
-                }}
-                className={classes.tagRemoveButton}
-              />
-            </Group>
-          </Badge>
-        ))}
-      </Group>
-      <Input
-        disabled={disabled}
-        onKeyUp={handleKeyUp}
-        placeholder={props?.placeHolder}
-        size={size}
-      />
+    <Input.Wrapper error={error}>
+      <div className={classes.tagsWrapper}>
+        <Group spacing={5}>
+          {tags.map((tag) => (
+            <Badge key={tag} size={size}>
+              <Group position="apart">
+                <Text>{tag}</Text>
+                <CloseButton
+                  onClick={() => {
+                    setTags(tags.filter((t) => t !== tag))
+                    props?.onRemoved?.(tag)
+                  }}
+                  className={classes.tagRemoveButton}
+                />
+              </Group>
+            </Badge>
+          ))}
+        </Group>
+        <Input
+          disabled={disabled}
+          onKeyUp={handleKeyUp}
+          placeholder={props?.placeHolder}
+          size={size}
+        />
+      </div>
     </Input.Wrapper>
   )
 }
