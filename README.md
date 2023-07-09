@@ -153,10 +153,6 @@ The `error` prop allows you to display an error message below the input field. I
 Example Usage
 -------------
 
-Here's an example that demonstrates how you can utilize the mantine Tag Input component with some of the available props:
-
-javascript
-
 ```javascript
 import { MantineTagsInput } from 'mantine-tag-input';
 
@@ -184,8 +180,3 @@ const MyComponent = () => {
 };
 ```
 
-In this example, the `MyComponent` function renders the `TagsInput` component with several props configured. Adjust the prop values as per your requirements to fully customize the behavior of the mantine Tag Input component.
-
-Congratulations! You are now equipped with the knowledge to utilize the mantine Tag Input component effectively in your React applications. Feel free to explore additional props and experiment with different configurations to suit your specific use cases.
-
-Happy coding!
