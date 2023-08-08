@@ -7,8 +7,44 @@ function App() {
 
   return (
     <MantineProvider>
-      <p className="read-the-docs">
-      <TagInput placeHolder='enter emails' size='xl' error='error'/>
+      <p className="read-the-docs" 
+      
+      style={{
+        width:'700px'
+      }}>
+      <TagInput
+      size='md'
+      placeHolder='enter emails'  error='error' 
+      badgeProps={{
+        variant:'filled',
+        styles:{
+          root:{
+            backgroundColor:'red',
+            color:'white'
+            
+          }
+
+        }
+      }}
+      closeButtonProps={{
+        unstyled:true,
+        styles:{
+          root:{
+            backgroundColor:'black',
+            color:'white'
+          }
+        }
+
+      }}
+      beforeAddValidate={(tag,tags)=>{
+        if(tag.includes('@')){
+          return true
+        }
+        return false
+      }}
+
+      
+      />
       </p>
     </MantineProvider>
   )

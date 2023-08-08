@@ -150,6 +150,21 @@ The `size` prop allows you to specify the size of the input field. It accepts on
 
 The `error` prop allows you to display an error message below the input field. It accepts a React node as a value.
 
+### badgeProps (optional)
+
+*   Type: `BadgeProps`
+*   Default: `undefined`
+
+The `badgeProps` prop allows you to pass mantine badge props to the badge component.
+
+
+### closeButtonProps (optional)
+
+*   Type: `CloseButtonProps`
+*   Default: `undefined`
+
+The `closeButtonProps` prop allows you to pass mantine close button props to the close button component.
+
 Example Usage
 -------------
 

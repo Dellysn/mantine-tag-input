@@ -1,4 +1,13 @@
-import { Badge, CloseButton, Group, Input, Text } from '@mantine/core'
+import {
+  Badge,
+  BadgeProps,
+  Box,
+  CloseButton,
+  CloseButtonProps,
+  Group,
+  Input,
+  Text,
+} from '@mantine/core'
 import React, { useEffect, useState } from 'react'
 
 import { useTagStyles } from '.'
@@ -18,6 +27,8 @@ export interface TagsInputProps {
   beforeAddValidate?: (tag: string, existingTags: string[]) => boolean
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  badgeProps?: BadgeProps
+  closeButtonProps?: CloseButtonProps
 }
 
 export const TagInput = (props: TagsInputProps) => {
@@ -76,11 +87,11 @@ export const TagInput = (props: TagsInputProps) => {
   }, [tags])
 
   return (
-    <Input.Wrapper error={error}>
-      <div className={classes.tagsWrapper}>
+    <Input.Wrapper error={error} className={classes.tagsWrapper}>
+      <Box className="tags-input--wrapper">
         <Group spacing={5}>
           {tags.map((tag) => (
-            <Badge key={tag} size={size}>
+            <Badge key={tag} size={size} variant="dot" {...props?.badgeProps}>
               <Group position="apart">
                 <Text>{tag}</Text>
                 <CloseButton
@@ -88,7 +99,8 @@ export const TagInput = (props: TagsInputProps) => {
                     setTags(tags.filter((t) => t !== tag))
                     props?.onRemoved?.(tag)
                   }}
-                  className={classes.tagRemoveButton}
+                  className="tags-input--close-button"
+                  {...props?.closeButtonProps}
                 />
               </Group>
             </Badge>
@@ -100,7 +112,7 @@ export const TagInput = (props: TagsInputProps) => {
           placeholder={props?.placeHolder}
           size={size}
         />
-      </div>
+      </Box>
     </Input.Wrapper>
   )
 }
